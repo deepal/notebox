@@ -5,6 +5,9 @@ import AboutPage from "./AboutPage";
 import FuelSavingsPage from "./containers/FuelSavingsPage";
 import LandingPage from "./LandingPage";
 import CreateNote from "./CreateNote";
+import CreateNoteBox from './CreateNoteBox';
+import ManageNoteBoxes from './ManageNoteBoxes';
+import NoteBox from './NoteBox';
 import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
 import React from "react";
@@ -30,6 +33,9 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/create-note" component={CreateNote} />
+          <Route exact path="/create-notebox" component={CreateNoteBox} />
+          <Route exact path="/manage" component={ManageNoteBoxes} />
+          <Route exact path="/notebox" component={NoteBox} />
           <Route path="/fuel-savings" component={FuelSavingsPage} />
           <Route path="/about" component={AboutPage} />
           <Route component={NotFoundPage} />
