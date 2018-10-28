@@ -1,0 +1,54 @@
+.filled-in:checked + label::before{
+    border: 2px solid #f3e5f5;
+    background-color: #f3e5f5;
+}
+
+.create-notebox-chips {
+    padding: 20px !important;
+}
+
+.create-notebox-chips.focus {
+    border-bottom: 1px solid white !important;
+    box-shadow: 0 1px 0 0 white !important;
+}
+
+.create-notebox-chips .chip {
+    display: inline-block;
+    height: 48px;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(171, 71, 188) !important;
+    line-height: 46px;
+    padding: 0 24px;
+    border-radius: 24px;
+    background-color: white;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.create-notebox-chips .chip .close {
+    cursor: pointer;
+    float: right;
+    font-size: 24px;
+    line-height: 48px;
+    padding-left: 8px;
+}
+
+.create-notebox-chips .chip:focus {
+    color: white !important;
+    background-color: #6a1b9a !important;
+}
+
+.create-notebox-chips .input {
+    font-size: 24px !important;
+    color: white !important;
+}
+
+.create-notebox-chips .autocomplete-content *{
+    color: rgb(171, 71, 188) !important;
+    font-size: 16px;
+}
+
+.create-notebox-heading {
+    margin-top: 50px;
+}

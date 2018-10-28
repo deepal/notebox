@@ -1,0 +1,59 @@
+* {
+    font-family: 'Mali', cursive;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+font-family: 'Mali', cursive !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+font-family: 'Mali', cursive !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+font-family: 'Mali', cursive !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+font-family: 'Mali', cursive !important;
+}
+
+.chips input {
+    width: 100% !important;
+}
+
+.btn-block {
+    width: 100%
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.page-footer {
+    margin-top: 100px !important
+}
+
+.home-icon {
+    font-size: 32px !important;
+}
+
+.notebox-navbar {
+    background-color: transparent !important;
+    box-shadow: none;
+}
+
+/* need mediaquery expression to make margin 0 when the screen is smaller. otherwise for smaller screens, 
+the logo will not display in the center because of the margin-left setting
+*/
+.brand-logo {
+    margin-left: 20px;
+}
+
+body {
+    display: flex !important;
+    min-height: 100vh !important;
+    flex-direction: column !important;
+}
+
+main {
+flex: 1 0 auto !important;
+}
+      
