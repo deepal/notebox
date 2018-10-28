@@ -1,0 +1,19 @@
+* {
+    font-family: 'Mali', cursive;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.page-footer {
+    margin-top: 100px !important
+}
+
+.home-icon {
+    font-size: 32px !important;
+}
+
+#get-started-button {
+    margin-top: 50px
+}
