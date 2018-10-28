@@ -5,6 +5,7 @@ import 'tui-editor/dist/tui-editor-contents.css';
 import 'highlight.js/styles/github.css';
 import './create-note.css';
 import Editor from 'tui-editor';
+import Materialize from 'materialize-css/dist/js/materialize.min';
 
 import Footer from '../Common/Footer';
 import Navbar from '../Common/Navbar';
@@ -23,7 +24,7 @@ class CreateNote extends React.Component {
         });
         document.addEventListener('DOMContentLoaded', function () {
             const elems = document.querySelectorAll('.chips');
-            window.M.Chips.init(elems, {
+            Materialize.Chips.init(elems, {
                 autocompleteOptions: {
                     data: {
                         'Apple': null,
