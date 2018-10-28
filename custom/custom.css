@@ -1,0 +1,52 @@
+* {
+    font-family: 'Mali', cursive;
+}
+
+textarea, input, .te-mode-switch * {
+    font-family: 'Mali', cursive !important;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+font-family: 'Mali', cursive !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+font-family: 'Mali', cursive !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+font-family: 'Mali', cursive !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+font-family: 'Mali', cursive !important;
+}
+
+.chips input {
+    width: 100% !important;
+}
+
+.te-editor *, pre *{
+    font-family: 'Source Code Pro', monospace !important;
+}
+
+.create-btn {
+    margin: 30px 5px 5px !important;
+}
+
+.btn-block {
+    width: 100%
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.page-footer {
+    margin-top: 100px !important
+}
+
+.home-icon {
+    font-size: 32px !important;
+}
+
+#get-started-button {
+    margin-top: 50px
+}
