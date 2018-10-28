@@ -1,0 +1,21 @@
+{
+  "name": "notebox",
+  "description": "",
+  "main": "server/index.js",
+  "authors": [
+    "Deepal Jayasekara"
+  ],
+  "license": "ISC",
+  "homepage": "notebox.deepal.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "frontend/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tui-editor": "1.2.6"
+  }
+}
