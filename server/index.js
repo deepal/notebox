@@ -29,6 +29,10 @@ app.get('/notebox', (req, res) => {
     res.sendFile(appRootPath.resolve('frontend/notebox.html'));
 });
 
+app.get('/create-notebox', (req, res) => {
+    res.sendFile(appRootPath.resolve('frontend/create-notebox.html'));
+});
+
 const server = http.createServer(app);
 
 server.listen(process.env.PORT || 8001);
