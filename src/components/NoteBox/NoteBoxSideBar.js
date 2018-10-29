@@ -6,17 +6,31 @@ class NoteBoxSideBar extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.addEventListener('DOMContentLoaded', function () {
             const options = {};
             const elems = document.querySelectorAll('.sidenav');
-            const instances = Materialize.Sidenav.init(elems, options);
+            Materialize.Sidenav.init(elems, options);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.tap-target');
+            Materialize.TapTarget.init(elems);
+            var instance = Materialize.TapTarget.getInstance(elems[0]);
+            instance.open();
         });
     }
 
     render() {
         return (
             <div>
+                <div className="tap-target purple lighten-2" data-target="menu">
+                    <div className="tap-target-content">
+                        <h5>Hey there!</h5>
+                        <p>You can view more details about this Note Box or change the settings here!</p>
+                    </div>
+                </div>
+
                 <ul id="slide-out" className="sidenav purple lighten-1">
                     <li className="white-text center"><h5>VI Cheatsheet</h5></li>
                     <li><a className="subheader white-text">Tags</a></li>
@@ -48,7 +62,7 @@ class NoteBoxSideBar extends React.Component {
                     <li><a className="waves-effect white-text" href="#!"><i className="material-icons left white-text">delete</i>Delete Note Box</a></li>
                 </ul>
                 <div className="fixed-action-btn">
-                    <a href="#" data-target="slide-out" className="sidenav-trigger btn-large btn-floating waves-effect waves-light"><i className="material-icons white purple-text">menu</i></a>
+                    <a id="menu" href="#" data-target="slide-out" className="sidenav-trigger btn-large btn-floating waves-effect waves-light"><i className="material-icons white purple-text">menu</i></a>
                 </div>
             </div>
         )
