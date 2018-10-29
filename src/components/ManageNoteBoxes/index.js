@@ -1,11 +1,51 @@
 import React from 'react';
 import Navbar from '../Common/Navbar';
 import Footer from '../Common/Footer';
-import './manage-note-boxes.css';
+import NoteBox from './NoteBox';
 
 class ManageNoteBoxes extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            noteBoxes: [
+                {
+                    title: 'Vi Cheatsheet',
+                    description: 'A collection of vi commands, hacks and tutorials',
+                    numberOfNotes: 2,
+                    isSystemNoteBox: false
+                },
+                {
+                    title: 'Git for dummies',
+                    description: 'Basic git commands for developers',
+                    numberOfNotes: 12,
+                    isSystemNoteBox: false
+                },
+                {
+                    title: 'Heroku Deployment Guide',
+                    description: 'Guides for deploying node.js apps on heroku',
+                    numberOfNotes: 5,
+                    isSystemNoteBox: false
+                },
+                {
+                    title: 'Project ideas',
+                    description: 'Web application development ideas',
+                    numberOfNotes: 3,
+                    isSystemNoteBox: false
+                },
+                {
+                    title: 'AWS ECS - Elastic Container Service',
+                    description: 'A curated list of AWS implementation guides and tutorials',
+                    numberOfNotes: 56,
+                    isSystemNoteBox: false
+                },
+                {
+                    title: 'Everything else',
+                    description: 'All other notes which do not belong to any Note Box :(',
+                    numberOfNotes: 31,
+                    isSystemNoteBox: true
+                }
+            ]
+        }
     }
 
     render() {
@@ -22,90 +62,11 @@ class ManageNoteBoxes extends React.Component {
                     <div className="col m10 offset-m1">
                         <div className="col s12 m12">
                             <div className="row">
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">VI Cheatsheet</span>
-                                            <p>A collection of vi commands for day-to-day coding</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">12 Notes</div>
-                                        </div>
+                                {this.state.noteBoxes.map((notebox, i) => (
+                                    <div key={i} className="col s12 m4">
+                                        <NoteBox {...notebox}></NoteBox>
                                     </div>
-                                </div>
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">VI Cheatsheet</span>
-                                            <p>A collection of vi commands for day-to-day coding</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">3 Notes</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">VI Cheatsheet</span>
-                                            <p>A collection of vi commands for day-to-day coding</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">5 Notes</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">VI Cheatsheet</span>
-                                            <p>A collection of vi commands for day-to-day coding</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">1 Notes</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">VI Cheatsheet</span>
-                                            <p>A collection of vi commands for day-to-day coding</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">6 Notes</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">VI Cheatsheet</span>
-                                            <p>A collection of vi commands for day-to-day coding</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">12 Notes</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col s12 m4">
-                                    <div className="card white z-depth-5">
-                                        <div className="card-content purple-text">
-                                            <span className="card-title">Everything else</span>
-                                            <p>All other notes which do not belong to any Note Box :(</p>
-                                        </div>
-                                        <div className="card-action">
-                                            <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
-                                            <div className="purple-text right">8 Notes</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>
