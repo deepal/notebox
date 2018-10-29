@@ -6,16 +6,15 @@ import Footer from '../Common/Footer';
 const LandingPage = () => {
   return (
     <div className="purple lighten-1 white-text">
-
       <div className="section no-pad-bot" id="index-banner">
         <div className="container">
           <br /><br />
-          <h1 className="header center white-text">Note Box</h1>
+          <h1 className="main-header center white-text">Note Box</h1>
           <div className="row center">
             <h5 className="header col s12 white-text">An Innovative Way to Organize Your Thoughts and Knowledge</h5>
           </div>
           <div className="row center">
-            <a href="/create-note" id="get-started-button" className="btn-large waves-effect waves-purple white purple-text">Get Started</a>
+            <a href="/login" id="get-started-button" className="btn-large waves-effect waves-purple white purple-text">Get Started with your Google Account</a>
           </div>
           <br /><br />
         </div>
