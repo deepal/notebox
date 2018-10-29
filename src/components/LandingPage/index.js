@@ -15,7 +15,7 @@ const LandingPage = () => {
             <h5 className="header col s12 white-text">An Innovative Way to Organize Your Thoughts and Knowledge</h5>
           </div>
           <div className="row center">
-            <a href="/create" id="get-started-button" className="btn-large waves-effect waves-purple white purple-text">Get Started</a>
+            <a href="/create-note" id="get-started-button" className="btn-large waves-effect waves-purple white purple-text">Get Started</a>
           </div>
           <br /><br />
         </div>

@@ -1,0 +1,50 @@
+.te-editor *, pre *{
+    font-family: 'Source Code Pro', monospace !important;
+}
+
+textarea, input, .te-mode-switch * {
+    font-family: 'Mali', cursive !important;
+}
+
+.chips input {
+    width: 100% !important;
+}
+
+.create-btn {
+    margin: 30px 5px 5px !important;
+}
+
+.create-note-chips {
+    padding: 5px !important;
+}
+
+.create-note-chips.focus {
+    border-bottom: 1px solid #9F4FB6 !important;
+    box-shadow: 0 1px 0 0 #9F4FB6 !important;
+}
+
+.create-note-chips .chip {
+    display: inline-block;
+    font-weight: 500;
+    color: white !important;
+    background-color: #9F4FB6;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.create-note-chips .chip:focus {
+    color: white !important;
+    background-color: #6a1b9a !important;
+}
+
+.create-note-chips .input {
+    color: #9F4FB6 !important;
+}
+
+.create-note-chips .autocomplete-content *{
+    color: rgb(171, 71, 188) !important;
+}
+
+.create-note-heading {
+    margin-top: 50px;
+}
