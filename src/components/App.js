@@ -7,7 +7,7 @@ import LandingPage from "./LandingPage";
 import CreateNote from "./CreateNote";
 import CreateNoteBox from './CreateNoteBox';
 import ManageNoteBoxes from './ManageNoteBoxes';
-import NotFound from './ErrorPages/404';
+import ErrorPage from './ErrorPage';
 import NoteBox from './NoteBox';
 import PropTypes from "prop-types";
 import React from "react";
@@ -38,7 +38,7 @@ class App extends React.Component {
           <Route exact path="/notebox" component={NoteBox} />
           <Route path="/fuel-savings" component={FuelSavingsPage} />
           <Route path="/about" component={AboutPage} />
-          <Route component={NotFound} />
+          <Route component={ErrorPage} />
         </Switch>
       </div>
     );
