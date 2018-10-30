@@ -1,4 +1,4 @@
-frontend/bower_components
+frontend_obsolete
 node_modules
 dist
 .DS_Store
