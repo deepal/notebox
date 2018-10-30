@@ -29,7 +29,7 @@ class NoteBoxSideBar extends React.Component {
 
                 <ul id="slide-out" className="sidenav purple lighten-1">
                     <li className="white-text center"><h5>VI Cheatsheet</h5></li>
-                    <li><p className="subheader white-text">Tags</p></li>
+                    <li><a className="subheader white-text">Tags</a></li>
                     <li>
                         <div className="row">
                             <div className="col m12 s12">
