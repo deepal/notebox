@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../Common/Footer';
 import Navbar from '../Common/Navbar';
 import NoteEditor from './NoteEditor';
@@ -30,7 +31,7 @@ class CreateNote extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col m4 offset-m4">
-                            <a className="btn-block waves-effect waves-purple btn-large white purple-text" href="/manage">Manage Your Note Box</a>
+                            <Link className="btn-block waves-effect waves-purple btn-large white purple-text" to={'/manage'}>Manage Your Note Box</Link>
                         </div>
                     </div>
                 </div>

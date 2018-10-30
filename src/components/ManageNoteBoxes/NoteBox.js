@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './notebox.css';
 
@@ -17,7 +18,7 @@ class NoteBox extends React.Component {
                     <p>{this.props.description}</p>
                 </div>
                 <div className="card-action">
-                    <a href="/notebox" className="purple-text"><i className="material-icons left">drafts</i>Open the box</a>
+                    <Link to={'/notebox'} className="purple-text"><i className="material-icons left">drafts</i>Open the box</Link>
                     <div className="purple-text right">{this.props.numberOfNotes} Notes</div>
                 </div>
             </div>
