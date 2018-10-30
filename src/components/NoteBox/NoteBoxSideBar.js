@@ -7,18 +7,14 @@ class NoteBoxSideBar extends React.Component {
     }
 
     componentDidMount() {
-        document.addEventListener('DOMContentLoaded', function () {
-            const options = {};
-            const elems = document.querySelectorAll('.sidenav');
-            Materialize.Sidenav.init(elems, options);
-        });
+        Materialize.Sidenav.init(document.querySelectorAll('.sidenav'));
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.tap-target');
-            Materialize.TapTarget.init(elems);
-            var instance = Materialize.TapTarget.getInstance(elems[0]);
+        const tapTargetElms = document.querySelectorAll('.tap-target');
+        Materialize.TapTarget.init(tapTargetElms);
+        const instance = Materialize.TapTarget.getInstance(tapTargetElms[0]);
+        setTimeout(() => {
             instance.open();
-        });
+        }, 2000);
     }
 
     render() {
@@ -33,7 +29,7 @@ class NoteBoxSideBar extends React.Component {
 
                 <ul id="slide-out" className="sidenav purple lighten-1">
                     <li className="white-text center"><h5>VI Cheatsheet</h5></li>
-                    <li><a className="subheader white-text">Tags</a></li>
+                    <li><p className="subheader white-text">Tags</p></li>
                     <li>
                         <div className="row">
                             <div className="col m12 s12">

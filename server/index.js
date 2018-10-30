@@ -1,8 +1,8 @@
 const express = require('express');
 const http = require('http');
-const path = require('path');
 const auth = require('http-auth');
 const appRootPath = require('app-root-path');
+const apiRoutes = require('./api');
 
 const basicAuth = auth.basic({
     realm: "deepal.io"
@@ -11,26 +11,12 @@ const basicAuth = auth.basic({
 const app = express();
 app.use(auth.connect(basicAuth));
 
-app.use(express.static(appRootPath.resolve('frontend')));
+app.use(express.static(appRootPath.resolve('./dist')));
 
-app.get('/', (req, res) => {
-    res.sendFile(appRootPath.resolve('frontend/index.html'));
-});
+app.use('/api', apiRoutes);
 
-app.get('/create', (req, res) => {
-    res.sendFile(appRootPath.resolve('frontend/editor.html'));
-});
-
-app.get('/manage', (req, res) => {
-    res.sendFile(appRootPath.resolve('frontend/manage-notebox.html'));
-});
-
-app.get('/notebox', (req, res) => {
-    res.sendFile(appRootPath.resolve('frontend/notebox.html'));
-});
-
-app.get('/create-notebox', (req, res) => {
-    res.sendFile(appRootPath.resolve('frontend/create-notebox.html'));
+app.get('*', (req, res) => {
+    res.sendFile(appRootPath.resolve('dist/index.html'));
 });
 
 const server = http.createServer(app);

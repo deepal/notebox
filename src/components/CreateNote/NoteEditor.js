@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+// import PropTypes from 'prop-types';
 
 import 'codemirror/lib/codemirror.css';
 import 'tui-editor/dist/tui-editor.css';
@@ -62,8 +63,8 @@ class NoteEditor extends React.Component {
                             </div>
                             <div className="row no-margin-bottom">
                                 <div className="col m4 offset-m4">
-                                    <a href="/manage" className="waves-effect waves-light btn-large purple white-text btn-block">
-                                    <i className="material-icons left">send</i>Create Note</a>
+                                    <Link to={'/manage'} className="waves-effect waves-light btn-large purple white-text btn-block">
+                                    <i className="material-icons left">send</i>Create Note</Link>
                                 </div>
                             </div>
                         </div>

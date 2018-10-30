@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Navbar from '../Common/Navbar';
 import Footer from '../Common/Footer';
 import Materialize from 'materialize-css/dist/js/materialize.min';
@@ -40,7 +41,7 @@ class CreateNoteBox extends React.Component {
                         </div>
                     </div>
                     <div className="row center">
-                        <a href="/manage" className="waves-effect waves-purple btn-large white purple-text">Create Note Box</a>
+                        <Link to={'/manage'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
                     </div>
                 </main>
                 <Footer></Footer>
