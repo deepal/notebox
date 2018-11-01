@@ -1,51 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from '../../actions/noteBoxActions'
 import Navbar from '../Common/Navbar';
 import Footer from '../Common/Footer';
 import NoteBox from './NoteBox';
 
-class ManageNoteBoxes extends React.Component {
+class NoteBoxes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            noteBoxes: [
-                {
-                    title: 'Vi Cheatsheet',
-                    description: 'A collection of vi commands, hacks and tutorials',
-                    numberOfNotes: 2,
-                    isSystemNoteBox: false
-                },
-                {
-                    title: 'Git for dummies',
-                    description: 'Basic git commands for developers',
-                    numberOfNotes: 12,
-                    isSystemNoteBox: false
-                },
-                {
-                    title: 'Heroku Deployment Guide',
-                    description: 'Guides for deploying node.js apps on heroku',
-                    numberOfNotes: 5,
-                    isSystemNoteBox: false
-                },
-                {
-                    title: 'Project ideas',
-                    description: 'Web application development ideas',
-                    numberOfNotes: 3,
-                    isSystemNoteBox: false
-                },
-                {
-                    title: 'AWS ECS - Elastic Container Service',
-                    description: 'A curated list of AWS implementation guides and tutorials',
-                    numberOfNotes: 56,
-                    isSystemNoteBox: false
-                },
-                {
-                    title: 'Everything else',
-                    description: 'All other notes which do not belong to any Note Box :(',
-                    numberOfNotes: 31,
-                    isSystemNoteBox: true
-                }
-            ]
-        }
+    }
+
+    componentDidMount(){
+        this.props.actions.fetchNoteBoxes();
     }
 
     render() {
@@ -62,7 +30,7 @@ class ManageNoteBoxes extends React.Component {
                     <div className="col m10 offset-m1">
                         <div className="col s12 m12">
                             <div className="row">
-                                {this.state.noteBoxes.map((notebox, i) => (
+                                {this.props.noteBoxes.map((notebox, i) => (
                                     <div key={i} className="col s12 m4">
                                         <NoteBox {...notebox}></NoteBox>
                                     </div>
@@ -78,4 +46,25 @@ class ManageNoteBoxes extends React.Component {
     }
 }
 
-export default ManageNoteBoxes;
+NoteBoxes.propTypes = {
+    noteBoxes: PropTypes.array,
+    actions: PropTypes.object
+}
+
+NoteBoxes.defaultProps = {
+    noteBoxes: []
+}
+
+function mapStateToProps(state){
+    return {
+        noteBoxes: state.noteBoxes
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(actions, dispatch)
+    };
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteBoxes);

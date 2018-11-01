@@ -2,11 +2,10 @@
 // import { NavLink, Route, Switch } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 
-import FuelSavingsPage from "./containers/FuelSavingsPage";
 import LandingPage from "./LandingPage";
 import CreateNote from "./CreateNote";
 import CreateNoteBox from './CreateNoteBox';
-import ManageNoteBoxes from './ManageNoteBoxes';
+import NoteBoxes from './ManageNoteBoxes';
 import ErrorPage from './ErrorPage';
 import NoteBox from './NoteBox';
 import PropTypes from "prop-types";
@@ -34,9 +33,8 @@ class App extends React.Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/create-note" component={CreateNote} />
           <Route exact path="/create-notebox" component={CreateNoteBox} />
-          <Route exact path="/manage" component={ManageNoteBoxes} />
-          <Route exact path="/notebox" component={NoteBox} />
-          <Route path="/fuel-savings" component={FuelSavingsPage} />
+          <Route exact path="/noteboxes" component={NoteBoxes} />
+          <Route exact path="/notebox/:id" component={NoteBox} />
           <Route component={ErrorPage} />
         </Switch>
       </div>
