@@ -9,17 +9,23 @@ class NoteBox extends React.Component {
     }
 
     render() {
-        const {isSystemNoteBox} = this.props;
+        const {
+            id,
+            title,
+            description,
+            numberOfNotes,
+            isSystemNoteBox
+        } = this.props;
         return (
             <div className="card z-depth-5 white">
                 <div className="card-content purple-text">
                     { isSystemNoteBox ? <i className="material-icons purple-text system-notebox-badge">bookmark</i> : null }
-                    <span className="card-title">{this.props.title}</span>
-                    <p>{this.props.description}</p>
+                    <span className="card-title">{title}</span>
+                    <p>{description}</p>
                 </div>
                 <div className="card-action">
-                    <Link to={'/notebox'} className="purple-text"><i className="material-icons left">drafts</i>Open the box</Link>
-                    <div className="purple-text right">{this.props.numberOfNotes} Notes</div>
+                    <Link to={`/notebox/${id}`} className="purple-text"><i className="material-icons left">drafts</i>Open the box</Link>
+                    <div className="purple-text right">{numberOfNotes} Notes</div>
                 </div>
             </div>
         )
@@ -27,6 +33,7 @@ class NoteBox extends React.Component {
 }
 
 NoteBox.propTypes = {
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     numberOfNotes: PropTypes.number,

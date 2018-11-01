@@ -1,46 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        const loggedInUser = this.props.loggedInUser;
-        let navbarContent;
+        const { firstName, lastName, home = '/' } = this.props.user || {};
 
-        if (loggedInUser) {
-            const {firstName, lastname} = loggedInUser;
-            navbarContent = (
-                <div className="nav-wrapper">
-                    <a href="/" className="brand-logo">Note Box</a>
-                    <ul className="right hide-on-med-and-down">
-                        <li><a href="/create-note">Create Note</a></li>
-                        <li><a href="/create-notebox">Create Note Box</a></li>
-                        <li><a href="/">{firstName} {lastname} <i className="material-icons right white-text">exit_to_app</i></a></li>
-                    </ul>
-                </div>
-            )
-        } else {
-            navbarContent = (
-                <div className="nav-wrapper">
-                    <ul className="right hide-on-med-and-down">
-                        <li><a href="/login">Log In<i className="material-icons right white-text">person</i></a></li>
-                    </ul>
-                </div>
-            )
+        let actionsSection;
+
+        // TODO: last name is not required. revise.
+        if (firstName) {
+            actionsSection = (
+                <ul className="right hide-on-med-and-down">
+                    <li><Link to={'/create-note'}>Create Note</Link></li>
+                    <li><Link to={'/create-notebox'}>Create Note Box</Link></li>
+                    <li><Link to={'/noteboxes'}>Your Note Boxes</Link></li>
+                    <li><a href="/auth/logout">{firstName} {lastName} <i className="material-icons right white-text">exit_to_app</i></a></li>
+                </ul>
+            );
         }
 
         return (
             <nav className="notebox-navbar">
-                {navbarContent}
+                <div className="nav-wrapper">
+                    <Link to={home} className="brand-logo">Note Box</Link>
+                    {actionsSection}
+                </div>
             </nav>
-        );
+        ); 
     }
 }
 
 Navbar.propTypes = {
-    loggedInUser: PropTypes.object
+    user: PropTypes.object
 }
 
-export default Navbar;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+export default connect(mapStateToProps)(Navbar);

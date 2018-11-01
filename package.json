@@ -32,11 +32,17 @@
   "license": "MIT",
   "dependencies": {
     "app-root-path": "^2.1.0",
+    "axios": "^0.18.0",
     "connected-react-router": "4.4.1",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "http-auth": "^3.2.3",
+    "lodash.get": "^4.4.2",
+    "marked": "^0.5.1",
     "materialize-css": "1.0.0-rc.2",
     "object-assign": "4.1.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-redux": "5.0.7",
@@ -50,6 +56,8 @@
     "@babel/core": "7.0.0",
     "@babel/node": "7.0.0",
     "@babel/plugin-proposal-class-properties": "7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "@babel/plugin-transform-react-constant-elements": "7.0.0",
     "@babel/polyfill": "7.0.0",
     "@babel/preset-env": "7.0.0",
@@ -145,6 +153,8 @@
         ],
         "plugins": [
           "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-optional-chaining",
+          "@babel/plugin-proposal-function-bind",
           "react-hot-loader/babel"
         ]
       },

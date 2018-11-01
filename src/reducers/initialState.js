@@ -1,18 +1,18 @@
 export default {
-  fuelSavings: {
-    newMpg: '',
-    tradeMpg: '',
-    newPpg: '',
-    tradePpg: '',
-    milesDriven: '',
-    milesDrivenTimeframe: 'week',
-    displayResults: false,
-    dateModified: null,
-    necessaryDataIsProvidedToCalculateSavings: false,
-    savings: {
-      monthly: 0,
-      annual: 0,
-      threeYear: 0
-    }
-  }
+  appMeta: {
+    version: '',
+    name: 'Note Box',
+    headline: 'An Innovative Way to Organize Your Thoughts and Knowledge'
+  },
+  user: {
+    firstName: 'Deepal',
+    lastName: 'Jayasekara',
+    home: '/noteboxes'
+  },
+  openNoteBox: {
+    noteBox: {},
+    notes: []
+  },
+  noteBoxes: [],
+  tags: []
 };
