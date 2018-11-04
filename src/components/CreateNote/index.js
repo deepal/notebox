@@ -36,15 +36,15 @@ class CreateNote extends React.Component {
         }
 
         return (
-            <div className="purple lighten-1 white-text">
-                <div className="container-fluid">
+            <div className="row">
+                <div className="col m12 s12">
                     <div className="row">
-                        <div className="col m8 offset-m2">
+                        <div className="col m8 offset-m2 s12">
                             <h3 className="heading center white-text">Jot something down...</h3>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col m8 offset-m2">
+                        <div className="col m8 offset-m2 s12">
                             <NoteEditor 
                                 note={this.props.note} 
                                 onSaveNote={this.createNote}

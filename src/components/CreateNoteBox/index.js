@@ -38,11 +38,11 @@ class CreateNoteBox extends React.Component {
         });
     }
 
-    onChangeTitle(event){
+    onChangeTitle(event) {
         this.setState({ title: event.target.value });
     }
 
-    onChangeDescription(event){
+    onChangeDescription(event) {
         this.setState({ description: event.target.value });
     }
 
@@ -52,54 +52,50 @@ class CreateNoteBox extends React.Component {
 
     render() {
         return (
-            <div className="purple lighten-1 white-text">
-                <main className="container-fluid">
+            <div className="row">
+                <div className="col m12">
+                    <div className="row center create-notebox-heading">
+                        <h4 className="white-text">A cool title for your Note Box</h4>
+                    </div>
                     <div className="row">
-                        <div className="col m12">
-                            <div className="row center create-notebox-heading">
-                                <h4 className="white-text">A cool title for your Note Box</h4>
-                            </div>
-                            <div className="row">
-                                <div className="col m8 offset-m2 s12 center">
-                                    <div className="input-field col s12 m12 create-notebox-text">
-                                        <input onChange={this.onChangeTitle} autoFocus placeholder="e.g, Coding tips" id="first_name" type="text" className="validate center create-notebox-text-input" />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="row center create-notebox-page-btn">
-                                <Link to={'/noteboxes'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
-                            </div> */}
-                        </div>
-                        <div className="col m12">
-                            <div className="row center create-notebox-heading">
-                                <h4 className="white-text">Describe your Note Box</h4>
-                            </div>
-                            <div className="row">
-                                <div className="col m8 offset-m2 s12 center">
-                                    <div className="input-field col s12 m12 create-notebox-text">
-                                        <input onChange={this.onChangeDescription} id="note_description" type="text" placeholder="e.g, Useful tips and tricks on programming" className="validate center create-notebox-text-input" />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="row center create-notebox-page-btn">
-                                <Link to={'/noteboxes'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
-                            </div> */}
-                        </div>
-                        <div className="col m12">
-                            <div className="row center create-notebox-heading">
-                                <h4 className="white-text">Pick some tags to create new Note Box</h4>
-                            </div>
-                            <div className="row">
-                                <div className="col m8 offset-m2 s12 center">
-                                    <div id="create-notebox-chips" className="chips chips-autocomplete chips-placeholder create-notebox-chips" />
-                                </div>
-                            </div>
-                            <div className="row center create-notebox-page-btn">
-                                <a onClick={this.onCreateNoteBox} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</a>
+                        <div className="col m8 offset-m2 s12 center">
+                            <div className="input-field col s12 m12 create-notebox-text">
+                                <input onChange={this.onChangeTitle} autoFocus placeholder="e.g, Coding tips" id="first_name" type="text" className="validate center create-notebox-text-input" />
                             </div>
                         </div>
                     </div>
-                </main>
+                    {/* <div className="row center create-notebox-page-btn">
+                                <Link to={'/noteboxes'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
+                            </div> */}
+                </div>
+                <div className="col m12">
+                    <div className="row center create-notebox-heading">
+                        <h4 className="white-text">Describe your Note Box</h4>
+                    </div>
+                    <div className="row">
+                        <div className="col m8 offset-m2 s12 center">
+                            <div className="input-field col s12 m12 create-notebox-text">
+                                <input onChange={this.onChangeDescription} id="note_description" type="text" placeholder="e.g, Useful tips and tricks on programming" className="validate center create-notebox-text-input" />
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div className="row center create-notebox-page-btn">
+                                <Link to={'/noteboxes'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
+                            </div> */}
+                </div>
+                <div className="col m12">
+                    <div className="row center create-notebox-heading">
+                        <h4 className="white-text">Pick some tags to create new Note Box</h4>
+                    </div>
+                    <div className="row">
+                        <div className="col m8 offset-m2 s12 center">
+                            <div id="create-notebox-chips" className="chips chips-autocomplete chips-placeholder create-notebox-chips" />
+                        </div>
+                    </div>
+                    <div className="row center create-notebox-page-btn">
+                        <a onClick={this.onCreateNoteBox} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</a>
+                    </div>
+                </div>
             </div>
         )
     }

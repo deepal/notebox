@@ -75,14 +75,7 @@ class NoteBox extends React.Component {
 
         
 
-        return (
-            <div className="purple lighten-1 white-text">
-                <NoteBoxSideBar></NoteBoxSideBar>
-                <main className="container-fluid">
-                    {contentComponent}
-                </main>
-            </div>
-        )
+        return contentComponent;
     }
 }
 

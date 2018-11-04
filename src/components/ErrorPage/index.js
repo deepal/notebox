@@ -35,23 +35,19 @@ class ErrorPage extends React.Component {
     }
 
     render() {
-        const {icon, message, description} = this.getErrorByCode(this.props.errorCode);
+        const { icon, message, description } = this.getErrorByCode(this.props.errorCode);
         return (
-            <div className="purple lighten-1 white-text">
-                <main className="container-fluid">
-                    <div className="row center create-notebox-heading">
-                        <i className="material-icons white-text error-page-logo">{icon}</i>
-                        <h4 className="white-text">{message}</h4>
-                        <p className="white-text">{description}</p>
-                    </div>
-                </main>
+            <div className="row center create-notebox-heading">
+                <i className="material-icons white-text error-page-logo">{icon}</i>
+                <h4 className="white-text">{message}</h4>
+                <p className="white-text">{description}</p>
             </div>
         )
     }
 }
 
 ErrorPage.propTypes = {
-    errorCode: PropTypes.number 
+    errorCode: PropTypes.number
 }
 
 ErrorPage.defaultProps = {
