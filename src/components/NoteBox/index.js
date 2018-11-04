@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import getProperty from 'lodash.get';
-import Navbar from '../Common/Navbar';
-import Footer from '../Common/Footer';
+import Spinner from '../Common/Spinner';
+import ErrorPage from '../ErrorPage';
 import Note from './Note';
 import NoteBoxTag from './NoteBoxTag';
 import NoteBoxSideBar from './NoteBoxSideBar';
-import * as actions from '../../actions/openNoteBoxActions';
+import * as noteAction from '../../constants/actionTypes/notes';
+import * as actions from '../../actions/noteActions';
 
 class NoteBox extends React.Component {
     constructor(props) {
@@ -21,19 +22,35 @@ class NoteBox extends React.Component {
     }
 
     render() {
-        const noteBox   = this.props.openNoteBox.noteBox;
-        const notes     = this.props.openNoteBox.notes;
+        const isLoading = this.props.status === noteAction.FETCH_NOTES_REQUEST;
+        const fetchNotesSuccessful = this.props.status === noteAction.FETCH_NOTES_SUCCESSFUL;
+        const fetchNotesFailed = this.props.status === noteAction.FETCH_NOTES_FAILED;
 
-        let noteBoxTagsComponent = null;
+        let contentComponent;
 
-        if (noteBox.tags) {
-            noteBoxTagsComponent = noteBox.tags.map((tag, i) => <NoteBoxTag key={i} name={tag}></NoteBoxTag>)
+        if (isLoading) {
+            contentComponent = (
+                <Spinner></Spinner>
+            );
         }
-        return (
-            <div className="purple lighten-1 white-text">
-                <Navbar></Navbar>
-                <NoteBoxSideBar></NoteBoxSideBar>
-                <main className="container-fluid">
+
+        if (fetchNotesFailed) {
+            contentComponent = (
+                <ErrorPage errorCode={this.props.errorCode}></ErrorPage>
+            );
+        }
+
+        if (fetchNotesSuccessful) {
+            const noteBox   = this.props.openNoteBox.noteBox;
+            const notes     = this.props.openNoteBox.notes;
+            let noteBoxTagsComponent = null;
+
+            if (noteBox.tags) {
+                noteBoxTagsComponent = noteBox.tags.map((tag, i) => <NoteBoxTag key={i} name={tag}></NoteBoxTag>)
+            }
+
+            contentComponent = (
+                <div>
                     <div className="row center">
                         <h4 className="white-text">{noteBox.title}</h4>
                     </div>
@@ -52,8 +69,18 @@ class NoteBox extends React.Component {
                             </div>
                         </div>
                     </div>
+                </div>
+            )
+        }
+
+        
+
+        return (
+            <div className="purple lighten-1 white-text">
+                <NoteBoxSideBar></NoteBoxSideBar>
+                <main className="container-fluid">
+                    {contentComponent}
                 </main>
-                <Footer></Footer>
             </div>
         )
     }
@@ -62,13 +89,17 @@ class NoteBox extends React.Component {
 NoteBox.propTypes = {
     match: PropTypes.object.isRequired,
     openNoteBox: PropTypes.object,
+    status: PropTypes.string,
+    errorCode: PropTypes.number,
     actions: PropTypes.object
 }
 
+NoteBox.defaultProps = {
+    status: noteAction.FETCH_NOTES_REQUEST
+}
+
 function mapStateToProps(state) {
-    return {
-        openNoteBox: state.openNoteBox
-    }
+    return state.noteBoxView
 }
 
 function mapDispatchToProps(dispatch) {

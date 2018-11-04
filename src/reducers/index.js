@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-import noteBoxes from './noteBoxesReducer';
-import openNoteBox from './openNoteBoxReducer';
+import createNoteView from './createNoteViewReducer';
+import noteBoxesView from './noteBoxesViewReducer';
+import noteBoxView from './noteBoxViewReducer';
 import user from './userReducer';
 
 const rootReducer = combineReducers({
-  openNoteBox,
-  noteBoxes,
+  noteBoxView,
+  noteBoxesView,
+  createNoteView,
   user
 });
 

@@ -10,7 +10,6 @@ class Note extends React.Component {
 
     render() {
         const {
-            id,
             title,
             noteContent,
             tags

@@ -4,10 +4,11 @@ import axios from 'axios';
 
 export function fetchNoteBoxes() {
     return (dispatch) => {
-        dispatch({ type: noteBoxAction.FETCH_NOTE_BOX_REQUEST });
+        dispatch({ type: noteBoxAction.FETCH_NOTE_BOXES_REQUEST });
         axios.get('http://localhost:9999/notebox')
-            .then(({ data }) => {
-                if (getProperty(data, 'success')) {
+            .then((response) => {
+                const { status, data } = response;
+                if ( status === 200 && getProperty(data, 'success')) {
                     dispatch({
                         type: noteBoxAction.FETCH_NOTE_BOXES_SUCCESSFUL,
                         noteBoxes: getProperty(data, 'data.noteBoxes')
@@ -15,17 +16,15 @@ export function fetchNoteBoxes() {
                 } else {
                     dispatch({
                         type: noteBoxAction.FETCH_NOTE_BOXES_FAILED,
-                        error: new Error('get noteboxes request returned an unsuccessful response')
+                        errorCode: status
                     });
                 }
             })
-            .catch((err) => {
+            .catch(() => {
                 dispatch({
                     type: noteBoxAction.FETCH_NOTE_BOXES_FAILED,
-                    error: err
+                    errorCode: 500
                 });
-            }).finally(() => {
-                dispatch({ type: noteBoxAction.FETCH_NOTE_BOXES_END });
             })
     }
 }
@@ -36,40 +35,46 @@ export function saveNoteBox(noteBox) {
         if (noteBox.id) {
             dispatch({ type: noteBoxAction.CREATE_NOTE_BOX_REQUEST });
             axios.post('/notebox', noteBox)
-                .then(({ data }) => {
-                    dispatch({
-                        type: noteBoxAction.CREATE_NOTE_BOX_SUCCESSFUL,
-                        id: data.data.noteBox.id
-                    });
-
-                    dispatch({ type: noteBoxAction.CREATE_NOTE_BOX_END });
+                .then(({ status, data }) => {
+                    if (status === 201 && getProperty(data, 'success')) {
+                        dispatch({
+                            type: noteBoxAction.CREATE_NOTE_BOX_SUCCESSFUL,
+                            id: getProperty(data, 'data.noteBox.id')
+                        });
+                    } else {
+                        dispatch({
+                            type: noteBoxAction.CREATE_NOTE_BOX_FAILED,
+                            errorCode: status
+                        });
+                    }
                 })
-                .catch((err) => {
+                .catch(() => {
                     dispatch({
                         type: noteBoxAction.CREATE_NOTE_BOX_FAILED,
-                        error: err
+                        errorCode: 500
                     });
-
-                    dispatch({ type: noteBoxAction.CREATE_NOTE_BOX_END });
                 })
         } else {
             dispatch({ type: noteBoxAction.UPDATE_NOTE_BOX_REQUEST });
             axios.put(`/notebox/${noteBox.id}`, noteBox)
-                .then(({ data }) => {
-                    dispatch({
-                        type: noteBoxAction.UPDATE_NOTE_BOX_SUCCESSFUL,
-                        id: data.data.noteBox.id
-                    });
-
-                    dispatch({ type: noteBoxAction.UPDATE_NOTE_BOX_END });
+                .then(({ status, data }) => {
+                    if (status === 200 && getProperty(data, 'success')) {
+                        dispatch({
+                            type: noteBoxAction.UPDATE_NOTE_BOX_SUCCESSFUL,
+                            id: getProperty(data, 'data.noteBox.id')
+                        });
+                    } else {
+                        dispatch({
+                            type: noteBoxAction.UPDATE_NOTE_BOX_FAILED,
+                            errorCode: status
+                        });
+                    }
                 })
-                .catch((err) => {
+                .catch(() => {
                     dispatch({
                         type: noteBoxAction.UPDATE_NOTE_BOX_FAILED,
-                        error: err
+                        errorCode: 500
                     });
-
-                    dispatch({ type: noteBoxAction.UPDATE_NOTE_BOX_END });
                 })
         }
 

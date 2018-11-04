@@ -8,6 +8,8 @@ import CreateNoteBox from './CreateNoteBox';
 import NoteBoxes from './ManageNoteBoxes';
 import ErrorPage from './ErrorPage';
 import NoteBox from './NoteBox';
+import Navbar from './Common/Navbar';
+import Footer from './Common/Footer';
 import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
@@ -19,25 +21,24 @@ import { hot } from "react-hot-loader";
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css?family=Mali|Source+Code+Pro" rel="stylesheet"></link>
-        {/* <div>
-          <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
-          {' | '}
-          <NavLink to="/fuel-savings" activeStyle={activeStyle}>Demo App</NavLink>
-          {' | '}
-          <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
-        </div> */}
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/create-note" component={CreateNote} />
-          <Route exact path="/create-notebox" component={CreateNoteBox} />
-          <Route exact path="/noteboxes" component={NoteBoxes} />
-          <Route exact path="/notebox/:id" component={NoteBox} />
-          <Route component={ErrorPage} />
-        </Switch>
-      </div>
+      [
+        <Navbar key={1}></Navbar>,
+        (
+          <main key={2}>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+            <link href="https://fonts.googleapis.com/css?family=Mali|Source+Code+Pro" rel="stylesheet"></link>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/create-note" component={CreateNote} />
+              <Route exact path="/create-notebox" component={CreateNoteBox} />
+              <Route exact path="/noteboxes" component={NoteBoxes} />
+              <Route exact path="/notebox/:id" component={NoteBox} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </main>
+        ),
+        <Footer key={3}></Footer>
+      ]
     );
   }
 }

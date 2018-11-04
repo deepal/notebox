@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import getProperty from 'lodash.get';
 import Materialize from 'materialize-css/dist/js/materialize.min';
 
 class NoteBoxSideBar extends React.Component {
@@ -13,7 +16,9 @@ class NoteBoxSideBar extends React.Component {
         Materialize.TapTarget.init(tapTargetElms);
         const instance = Materialize.TapTarget.getInstance(tapTargetElms[0]);
         setTimeout(() => {
-            instance.open();
+            if (this.props.firstRun) {
+                instance.open();
+            }
         }, 2000);
     }
 
@@ -64,4 +69,15 @@ class NoteBoxSideBar extends React.Component {
         )
     }
 }
-export default NoteBoxSideBar;
+
+NoteBoxSideBar.propTypes = {
+    firstRun: PropTypes.bool
+}
+
+function mapStateToProps(state) {
+    return {
+        firstRun: getProperty(state, 'user.firstRun.openNoteBox')
+    }
+}
+
+export default connect(mapStateToProps)(NoteBoxSideBar);

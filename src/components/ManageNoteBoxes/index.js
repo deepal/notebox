@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from '../../actions/noteBoxActions'
-import Navbar from '../Common/Navbar';
-import Footer from '../Common/Footer';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as noteBoxActionState from '../../constants/actionTypes/noteBoxes';
+import * as actions from '../../actions/noteBoxActions';
+import Spinner from '../Common/Spinner';
+import ErrorPage from '../ErrorPage';
 import NoteBox from './NoteBox';
 
 class NoteBoxes extends React.Component {
@@ -12,20 +13,25 @@ class NoteBoxes extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.actions.fetchNoteBoxes();
     }
 
     render() {
-        return (
-            <div className="purple lighten-1 white-text">
-                <Navbar></Navbar>
-                <main className="container-fluid">
-                <div className="row">
-                    <div className="col m8 offset-m2">
-                        <h4 className="heading center white-text">Your Note Boxes</h4>
-                    </div>
-                </div>
+        const isLoading = this.props.status === noteBoxActionState.FETCH_NOTE_BOXES_REQUEST;
+        const notesLoaded = this.props.status === noteBoxActionState.FETCH_NOTE_BOXES_SUCCESSFUL;
+        const notesLoadingError = this.props.status === noteBoxActionState.FETCH_NOTE_BOXES_FAILED;
+
+        let component;
+
+        if (isLoading) {
+            component = (
+                <Spinner></Spinner>
+            );
+        }
+
+        if (notesLoaded) {
+            component = (
                 <div className="row">
                     <div className="col m10 offset-m1">
                         <div className="col s12 m12">
@@ -39,8 +45,27 @@ class NoteBoxes extends React.Component {
                         </div>
                     </div>
                 </div>
-            </main>
-                <Footer></Footer>
+            );
+        }
+
+        if (notesLoadingError) {
+            return (
+                <div>
+                    <ErrorPage></ErrorPage>
+                </div>
+            );
+        }
+
+        return (
+            <div className="purple lighten-1 white-text">
+                <main className="container-fluid">
+                    <div className="row">
+                        <div className="col m8 offset-m2">
+                            <h4 className="heading center white-text">Your Note Boxes</h4>
+                        </div>
+                    </div>
+                    {component}
+                </main>
             </div>
         )
     }
@@ -48,23 +73,26 @@ class NoteBoxes extends React.Component {
 
 NoteBoxes.propTypes = {
     noteBoxes: PropTypes.array,
+    status: PropTypes.string,
     actions: PropTypes.object
 }
 
 NoteBoxes.defaultProps = {
-    noteBoxes: []
+    noteBoxes: [],
+    status: noteBoxActionState.FETCH_NOTE_BOXES_REQUEST
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        noteBoxes: state.noteBoxes
+        noteBoxes: state.noteBoxesView.noteBoxes,
+        status: state.noteBoxesView.status
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     };
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteBoxes);

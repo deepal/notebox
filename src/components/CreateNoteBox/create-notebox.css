@@ -7,7 +7,7 @@
     padding: 20px !important;
 }
 
-.create-notebox-chips.focus {
+.create-notebox-chips.focus, .create-notebox-text-input:focus {
     border-bottom: 1px solid white !important;
     box-shadow: 0 1px 0 0 white !important;
 }
@@ -39,7 +39,7 @@
     background-color: #6a1b9a !important;
 }
 
-.create-notebox-chips .input {
+.create-notebox-chips .input, .create-notebox-text-input {
     font-size: 24px !important;
     color: white !important;
 }
@@ -51,4 +51,21 @@
 
 .create-notebox-heading {
     margin-top: 50px;
+}
+
+.create-notebox-text {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.create-notebox-text input::placeholder, .create-notebox-chips input::placeholder {
+    color: #ffffff42
+}
+
+.create-notebox-text-input {
+    padding: 20px !important;
+}
+
+.create-notebox-page-btn {
+    margin-top: 60px !important;
 }
