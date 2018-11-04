@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './landing-page.css'
-import Footer from '../Common/Footer';
 
 const LandingPage = () => {
   return (
@@ -55,8 +54,6 @@ const LandingPage = () => {
         </div>
         <br /><br />
       </div>
-      <Footer></Footer>
-      {/*  Scripts*/}
     </div>
 
   );

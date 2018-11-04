@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Navbar from '../Common/Navbar';
-import Footer from '../Common/Footer';
 import './error-page.css';
 
 class ErrorPage extends React.Component {
@@ -33,14 +31,13 @@ class ErrorPage extends React.Component {
     }
 
     getErrorByCode(errorCode) {
-        return this.errorMap[errorCode];
+        return this.errorMap[errorCode] || this.errorMap[500];
     }
 
     render() {
         const {icon, message, description} = this.getErrorByCode(this.props.errorCode);
         return (
             <div className="purple lighten-1 white-text">
-                <Navbar></Navbar>
                 <main className="container-fluid">
                     <div className="row center create-notebox-heading">
                         <i className="material-icons white-text error-page-logo">{icon}</i>
@@ -48,7 +45,6 @@ class ErrorPage extends React.Component {
                         <p className="white-text">{description}</p>
                     </div>
                 </main>
-                <Footer></Footer>
             </div>
         )
     }

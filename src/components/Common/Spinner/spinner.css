@@ -1,5 +1,5 @@
 .spinner-white-only {
-    border-color: white;
+    border-color: white !important;
 }
 
 .spinner-purple-only {

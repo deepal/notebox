@@ -7,12 +7,43 @@ export default {
   user: {
     firstName: 'Deepal',
     lastName: 'Jayasekara',
-    home: '/noteboxes'
+    home: '/noteboxes',
+    firstRun: {
+      createNote: true,
+      viewNoteBoxes: true,
+      openNoteBox: false,
+      createNoteBox: true
+    }
   },
-  openNoteBox: {
-    noteBox: {},
-    notes: []
+  createNoteView: {
+    note: {
+      title: '',
+      noteContent: '',
+      tags: []
+    },
+    status: '',
+    errorCode: 0
   },
-  noteBoxes: [],
-  tags: []
+  createNoteBoxView: {
+    noteBox: {
+      title: '',
+      description: '',
+      tags: []
+    },
+    status: '',
+    errorCode: 0
+  },
+  noteBoxesView: {
+    noteBoxes: [],
+    status: '',
+    errorCode: 0
+  },
+  noteBoxView: {
+    openNoteBox: {
+      noteBox: {},
+      notes: []
+    },
+    status: '',
+    errorCode: 0
+  }
 };
