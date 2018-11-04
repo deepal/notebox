@@ -54,6 +54,6 @@ body {
 }
 
 main {
-flex: 1 0 auto !important;
+    flex: 1 0 auto !important;
 }
       

@@ -26,7 +26,7 @@ class NoteBox extends React.Component {
         const fetchNotesSuccessful = this.props.status === noteAction.FETCH_NOTES_SUCCESSFUL;
         const fetchNotesFailed = this.props.status === noteAction.FETCH_NOTES_FAILED;
 
-        let contentComponent;
+        let contentComponent = <div></div>;
 
         if (isLoading) {
             contentComponent = (
@@ -69,11 +69,10 @@ class NoteBox extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <NoteBoxSideBar></NoteBoxSideBar>
                 </div>
             )
         }
-
-        
 
         return contentComponent;
     }

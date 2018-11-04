@@ -33,7 +33,7 @@ class NoteBoxes extends React.Component {
         if (notesLoaded) {
             component = (
                 <div className="row">
-                    <div className="col m10 offset-m1">
+                    <div className="col m10 offset-m1 s12">
                         <div className="col s12 m12">
                             <div className="row">
                                 {this.props.noteBoxes.map((notebox, i) => (
@@ -59,7 +59,7 @@ class NoteBoxes extends React.Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col m8 offset-m2">
+                    <div className="col m8 offset-m2 s12">
                         <h4 className="heading center white-text">Your Note Boxes</h4>
                     </div>
                 </div>

@@ -4,11 +4,14 @@
 
 .note-box-note {
     padding: 0 !important;
+    position: relative
 }
 
 .note-box-note-content {
     padding: 0 !important;
     margin: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .note-box-note-title-container {
@@ -24,10 +27,8 @@
     padding: 20px !important;
 }
 
-.note-content-section {
-
-}
-
-.note-tags-section {
-    margin-bottom: 0 !important;
+@media only screen and (min-width: 600px) {
+    .note-content-section {
+        padding-right: 20px;
+    }
 }

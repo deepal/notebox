@@ -24,8 +24,14 @@ class NoteBox extends React.Component {
                     <p>{description}</p>
                 </div>
                 <div className="card-action">
-                    <Link to={`/notebox/${id}`} className="purple-text"><i className="material-icons left">drafts</i>Open the box</Link>
-                    <div className="purple-text right">{numberOfNotes} Notes</div>
+                    <div id="card-action-panel" className="row">
+                        <div className="col m8">
+                            <Link to={`/notebox/${id}`} className="purple-text"><i className="material-icons left">drafts</i>Open the box</Link>
+                        </div>
+                        <div className="col m4 right">
+                            <div className="purple-text right">{numberOfNotes} Notes</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
