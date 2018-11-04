@@ -79,13 +79,13 @@ class NoteEditor extends React.Component {
                 <div className="card z-depth-5">
                     <div className="card-content">
                         <div className="row no-margin-bottom">
-                            <div className="input-field col m12">
+                            <div className="input-field col m12 s12">
                                 <input value={this.state.title} autoFocus type="text" id="icon_prefix2" className="materialize-textarea" onChange={this.onTitleChange} />
                                 <label htmlFor="icon_prefix2">Title</label>
                             </div>
                         </div>
                         <div className="row no-margin-bottom">
-                            <div className="col s12">
+                            <div className="col m12 s12">
                                 <div id="editSection" />
                             </div>
                         </div>
@@ -96,7 +96,7 @@ class NoteEditor extends React.Component {
                                 </div>
                             </div>
                             <div className="row no-margin-bottom">
-                                <div className="col m4 offset-m4">
+                                <div className="col m4 offset-m4 s8 offset-s2">
                                     <a onClick={this.onCreateNote} className="waves-effect waves-light btn-large purple white-text btn-block">
                                         {this.props.isSaving
                                             ? <Spinner></Spinner>

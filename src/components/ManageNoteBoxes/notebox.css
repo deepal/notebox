@@ -4,3 +4,7 @@
     top: 0;
     right: 0;
 }
+
+#card-action-panel {
+    margin-bottom: 0 !important;
+}

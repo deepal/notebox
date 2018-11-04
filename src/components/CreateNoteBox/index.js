@@ -53,9 +53,11 @@ class CreateNoteBox extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col m12">
+                <div className="col m12 s12">
                     <div className="row center create-notebox-heading">
-                        <h4 className="white-text">A cool title for your Note Box</h4>
+                        <div className="col m12 s12">
+                            <h4 className="white-text">A cool title for your Note Box</h4>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col m8 offset-m2 s12 center">
@@ -64,13 +66,12 @@ class CreateNoteBox extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="row center create-notebox-page-btn">
-                                <Link to={'/noteboxes'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
-                            </div> */}
                 </div>
                 <div className="col m12">
                     <div className="row center create-notebox-heading">
+                        <div className="col m12 s12">
                         <h4 className="white-text">Describe your Note Box</h4>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col m8 offset-m2 s12 center">
@@ -79,13 +80,12 @@ class CreateNoteBox extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="row center create-notebox-page-btn">
-                                <Link to={'/noteboxes'} className="waves-effect waves-purple btn-large white purple-text">Create Note Box</Link>
-                            </div> */}
                 </div>
                 <div className="col m12">
                     <div className="row center create-notebox-heading">
-                        <h4 className="white-text">Pick some tags to create new Note Box</h4>
+                        <div className="col m12 s12">
+                            <h4 className="white-text">Pick some tags to create new Note Box</h4>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col m8 offset-m2 s12 center">
