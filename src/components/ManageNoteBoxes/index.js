@@ -57,15 +57,13 @@ class NoteBoxes extends React.Component {
         }
 
         return (
-            <div className="purple lighten-1 white-text">
-                <main className="container-fluid">
-                    <div className="row">
-                        <div className="col m8 offset-m2">
-                            <h4 className="heading center white-text">Your Note Boxes</h4>
-                        </div>
+            <div>
+                <div className="row">
+                    <div className="col m8 offset-m2">
+                        <h4 className="heading center white-text">Your Note Boxes</h4>
                     </div>
-                    {component}
-                </main>
+                </div>
+                {component}
             </div>
         )
     }

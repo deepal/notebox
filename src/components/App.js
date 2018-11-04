@@ -24,7 +24,7 @@ class App extends React.Component {
       [
         <Navbar key={1}></Navbar>,
         (
-          <main key={2}>
+          <main className="container-fluid" key={2}>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
             <link href="https://fonts.googleapis.com/css?family=Mali|Source+Code+Pro" rel="stylesheet"></link>
             <Switch>
