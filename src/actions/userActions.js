@@ -8,7 +8,7 @@ export function requestLogout() {
 
 export function logout() {
     return (dispatch) => {
-        axios.get('http://localhost:9999/auth/logout')
+        axios.get('/auth/logout')
             .then(({ data }) => {
                 if (getProperty(data, 'success')) {
                     dispatch({ type: userAction.LOGOUT_SUCCESSFUL });
@@ -28,7 +28,7 @@ export function logout() {
 export function updateProfile(profile) {
     return (dispatch) => {
         dispatch({ type: userAction.UPDATE_PROFILE_REQUESTED });
-        axios.put('http://localhost:9999/user/profile', profile)
+        axios.put('/user/profile', profile)
             .then(({ data }) => {
                 if (getProperty(data, 'success')) {
                     const updatedProfile = getProperty(data, 'data.profile');

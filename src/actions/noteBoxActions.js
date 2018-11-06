@@ -5,7 +5,7 @@ import axios from 'axios';
 export function fetchNoteBoxes() {
     return (dispatch) => {
         dispatch({ type: noteBoxAction.FETCH_NOTE_BOXES_REQUEST });
-        axios.get('http://localhost:9999/notebox')
+        axios.get('/notebox')
             .then((response) => {
                 const { status, data } = response;
                 if ( status === 200 && getProperty(data, 'success')) {

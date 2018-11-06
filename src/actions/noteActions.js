@@ -7,10 +7,10 @@ export function getNotes(noteBoxId) {
         let url;
 
         if (noteBoxId) {
-            url = `http://localhost:9999/notebox/${noteBoxId}/note`
+            url = `/notebox/${noteBoxId}/note`
         } else {
             // load all notes if noteBoxId is not provided
-            `http://localhost:9999/note`
+            `/note`
         }
 
         dispatch({ type: noteAction.FETCH_NOTES_REQUEST });
@@ -43,7 +43,7 @@ export function createNote(note) {
     // TODO: should validate note content here
     return (dispatch) => {
         dispatch({ type: noteAction.CREATE_NOTE_REQUEST });
-        axios.post(`http://localhost:9999/note`, note)
+        axios.post(`/note`, note)
             .then(({ status, data }) => {
                 if (status === 201 && getProperty(data, 'success')) {
                     dispatch({ type: noteAction.CREATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
@@ -70,7 +70,7 @@ export function updateNote(note) {
         }
 
         dispatch({ type: noteAction.UPDATE_NOTE_REQUEST });
-        axios.put(`http://localhost:9999/note/${note.id}`, note)
+        axios.put(`/note/${note.id}`, note)
             .then(({ status, data }) => {
                 if (status === 200 && getProperty(data, 'success')) {
                     dispatch({ type: noteAction.UPDATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
@@ -95,7 +95,7 @@ export function deleteNote(noteId) {
         if (!noteId) {
             dispatch({type: noteAction.DELETE_NOTE_FAILED, error: new Error('note id must be provided to delete')});
         }
-        axios.get(`http://localhost:9999/note/${noteId}`)
+        axios.get(`/note/${noteId}`)
             .then(({ status, data }) => {
                 if (status === 200 && getProperty(data, 'success')) {
                     dispatch({type: noteAction.DELETE_NOTE_SUCCESSFUL, noteId: getProperty(data, 'data.note.id')});
