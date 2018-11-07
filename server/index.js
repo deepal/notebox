@@ -27,8 +27,8 @@ app.use(auth.connect(basicAuth));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new GoogleStrategy({
-    clientID: '845235041605-icbr3gt1llmm1aeuli3iq5u0hrtivvp1.apps.googleusercontent.com',
-    clientSecret: 'ZhrPcsSDBWJczcy1Byj9ASxY',
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/google/redirect"
   }, (accessToken, refreshToken, profile, done) => {
       console.log(profile);
