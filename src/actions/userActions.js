@@ -22,26 +22,45 @@ export function logout() {
             .finally(() => {
                 dispatch({ type: userAction.LOGOUT_END });
             });
-    }
+    };
 }
 
-export function updateProfile(profile) {
+export function getUserProfile() {
     return (dispatch) => {
-        dispatch({ type: userAction.UPDATE_PROFILE_REQUESTED });
-        axios.put('/user/profile', profile)
+        dispatch({ type: userAction.FETCH_USER_REQUESTED });
+        axios.get('/auth/user')
             .then(({ data }) => {
                 if (getProperty(data, 'success')) {
-                    const updatedProfile = getProperty(data, 'data.profile');
-                    dispatch({ type: userAction.UPDATE_PROFILE_SUCCESSFUL, profile: updatedProfile });
+                    const user = getProperty(data, 'data.user');
+                    dispatch({ type: userAction.FETCH_USER_SUCCESSFUL, user });
                 } else {
-                    dispatch({ type: userAction.UPDATE_PROFILE_FAILED, error: new Error('update profile request returned an unsuccessful response') });
+                    dispatch({ type: userAction.FETCH_USER_FAILED, error: new Error('fetch user request returned an unsuccessful response') });
+                }
+            }).catch((err) => {
+                dispatch({ type: userAction.FETCH_USER_FAILED, error: err });
+            }).finally(() => {
+                dispatch({ type: userAction.UPDATE_USER_END });
+            });
+    };
+}
+
+export function updateProfile(user) {
+    return (dispatch) => {
+        dispatch({ type: userAction.UPDATE_USER_REQUESTED });
+        axios.put('/auth/user', user)
+            .then(({ data }) => {
+                if (getProperty(data, 'success')) {
+                    const updatedUser = getProperty(data, 'data.user');
+                    dispatch({ type: userAction.UPDATE_USER_SUCCESSFUL, user: updatedUser });
+                } else {
+                    dispatch({ type: userAction.UPDATE_USER_FAILED, error: new Error('update user request returned an unsuccessful response') });
                 }
             })
             .catch((err) => {
-                dispatch({ type: userAction.UPDATE_PROFILE_FAILED, error: err });
+                dispatch({ type: userAction.UPDATE_USER_FAILED, error: err });
             })
             .finally(() => {
-                dispatch({ type: userAction.UPDATE_PROFILE_END });
+                dispatch({ type: userAction.UPDATE_USER_END });
             });
-    }
+    };
 }
