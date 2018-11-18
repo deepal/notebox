@@ -7,7 +7,7 @@ export function getNotes(noteBoxId) {
         let url;
 
         if (noteBoxId) {
-            url = `/notebox/${noteBoxId}/note`
+            url = `/api/notebox/${noteBoxId}/note`
         } else {
             // load all notes if noteBoxId is not provided
             `/note`
@@ -43,7 +43,7 @@ export function createNote(note) {
     // TODO: should validate note content here
     return (dispatch) => {
         dispatch({ type: noteAction.CREATE_NOTE_REQUEST });
-        axios.post(`/note`, note)
+        axios.post(`/api/note`, note)
             .then(({ status, data }) => {
                 if (status === 201 && getProperty(data, 'success')) {
                     dispatch({ type: noteAction.CREATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
@@ -70,7 +70,7 @@ export function updateNote(note) {
         }
 
         dispatch({ type: noteAction.UPDATE_NOTE_REQUEST });
-        axios.put(`/note/${note.id}`, note)
+        axios.put(`/api/note/${note.id}`, note)
             .then(({ status, data }) => {
                 if (status === 200 && getProperty(data, 'success')) {
                     dispatch({ type: noteAction.UPDATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
@@ -95,7 +95,7 @@ export function deleteNote(noteId) {
         if (!noteId) {
             dispatch({type: noteAction.DELETE_NOTE_FAILED, error: new Error('note id must be provided to delete')});
         }
-        axios.get(`/note/${noteId}`)
+        axios.get(`/api/note/${noteId}`)
             .then(({ status, data }) => {
                 if (status === 200 && getProperty(data, 'success')) {
                     dispatch({type: noteAction.DELETE_NOTE_SUCCESSFUL, noteId: getProperty(data, 'data.note.id')});

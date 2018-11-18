@@ -5,7 +5,7 @@ import axios from 'axios';
 export function fetchNoteBoxes() {
     return (dispatch) => {
         dispatch({ type: noteBoxAction.FETCH_NOTE_BOXES_REQUEST });
-        axios.get('/notebox')
+        axios.get('/api/notebox')
             .then((response) => {
                 const { status, data } = response;
                 if ( status === 200 && getProperty(data, 'success')) {
@@ -34,7 +34,7 @@ export function saveNoteBox(noteBox) {
     return (dispatch) => {
         if (noteBox.id) {
             dispatch({ type: noteBoxAction.CREATE_NOTE_BOX_REQUEST });
-            axios.post('/notebox', noteBox)
+            axios.post('/api/notebox', noteBox)
                 .then(({ status, data }) => {
                     if (status === 201 && getProperty(data, 'success')) {
                         dispatch({
@@ -56,7 +56,7 @@ export function saveNoteBox(noteBox) {
                 })
         } else {
             dispatch({ type: noteBoxAction.UPDATE_NOTE_BOX_REQUEST });
-            axios.put(`/notebox/${noteBox.id}`, noteBox)
+            axios.put(`/api/notebox/${noteBox.id}`, noteBox)
                 .then(({ status, data }) => {
                     if (status === 200 && getProperty(data, 'success')) {
                         dispatch({

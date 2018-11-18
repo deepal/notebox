@@ -33,6 +33,9 @@ class App extends React.Component {
               <Route exact path="/create-notebox" component={CreateNoteBox} />
               <Route exact path="/noteboxes" component={NoteBoxes} />
               <Route exact path="/notebox/:id" component={NoteBox} />
+              <Route exact path="/error/unauthorized" render={(props) => <ErrorPage {...props} errorCode={401} />} />
+              <Route exact path="/error/forbidden" render={(props) => <ErrorPage {...props} errorCode={403} />} />
+              <Route exact path="/error/servererror" render={(props) => <ErrorPage {...props} errorCode={500} />} />
               <Route component={ErrorPage} />
             </Switch>
           </main>

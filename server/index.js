@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const http = require('http');
-const auth = require('http-auth');
 const appRootPath = require('app-root-path');
 const passport = require('passport');
 const { promisify } = require('util');
@@ -11,10 +10,6 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const apiRoutes = require('./api');
 const authRoutes = require('./routes/auth');
 const request = promisify(requestFn);
-
-const basicAuth = auth.basic({
-    realm: "deepal.io"
-}, (username, password, cb) => cb (username == 'deepal' && password == 'vishi'));
 
 const app = express();
 app.use(session({
@@ -27,7 +22,6 @@ app.use(session({
         httpOnly: false
     }
 }));
-app.use(auth.connect(basicAuth));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new GoogleStrategy({
@@ -76,7 +70,11 @@ app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
 app.get('*', (req, res) => {
-    res.sendFile(appRootPath.resolve('dist/index.html'));
+    if (req.user) {
+        res.sendFile(appRootPath.resolve('dist/index.html'));
+    } else {
+        res.redirect('/error/unauthorized');
+    }
 });
 
 const server = http.createServer(app);

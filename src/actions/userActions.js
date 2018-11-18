@@ -25,7 +25,7 @@ export function logout() {
     };
 }
 
-export function getUserProfile() {
+export function getUser() {
     return (dispatch) => {
         dispatch({ type: userAction.FETCH_USER_REQUESTED });
         axios.get('/auth/user')
