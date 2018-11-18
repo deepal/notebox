@@ -1,6 +1,7 @@
 import * as noteAction from '../constants/actionTypes/notes';
 import initialState from './initialState';
 
+// TODO: Incomplete
 export default function createNoteViewReducer(state = initialState.createNoteView, action) {
     switch(action.type) {
         case noteAction.CREATE_NOTE_REQUEST:
