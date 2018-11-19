@@ -41,7 +41,6 @@ passport.use(new GoogleStrategy({
           },
           json: true
       }).then((resp) => {
-            console.log(resp.body);
             return done(null, resp.body.data.user);
       }).catch((err) => {
           return done(err);
