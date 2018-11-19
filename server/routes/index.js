@@ -26,7 +26,7 @@ router.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
     clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/redirect"
+    callbackURL: process.env.GOOGLE_OAUTH_CALLBACK_URL
   }, (accessToken, refreshToken, profile, done) => {
       /**
        * Once Google OAuth authentication is successful, send retrieved google profile to
