@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const appRootPath = require('app-root-path');
+const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const { promisify } = require('util');
 const requestFn = require('request');
@@ -12,15 +13,16 @@ const request = promisify(requestFn);
 
 const router = express.Router();
 router.use(session({
-    name: 'NBOX_SESSION',
-    secret: '1234',
+    name: process.env.SESSION_COOKIE_NAME,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
         secure: false,
-        httpOnly: false
+        httpOnly: true
     }
 }));
+router.use(cookieParser);
 router.use(passport.initialize());
 router.use(passport.session());
 passport.use(new GoogleStrategy({
