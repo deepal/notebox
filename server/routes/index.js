@@ -10,8 +10,8 @@ const apiRoutes = require('./api');
 const authRoutes = require('./auth');
 const request = promisify(requestFn);
 
-const app = express();
-app.use(session({
+const router = express.Router();
+router.use(session({
     name: 'NBOX_SESSION',
     secret: '1234',
     resave: false,
@@ -21,8 +21,8 @@ app.use(session({
         httpOnly: false
     }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+router.use(passport.initialize());
+router.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
     clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
@@ -41,6 +41,7 @@ passport.use(new GoogleStrategy({
           },
           json: true
       }).then((resp) => {
+            console.log(resp.body);
             return done(null, resp.body.data.user);
       }).catch((err) => {
           return done(err);
@@ -63,9 +64,9 @@ passport.deserializeUser((id, done) => {
     })
 });
 
-app.use(express.static(appRootPath.resolve('./dist')));
+router.use(express.static(appRootPath.resolve('./dist')));
 
-app.use('/api', apiRoutes);
-app.use('/auth', authRoutes);
+router.use('/api', apiRoutes);
+router.use('/auth', authRoutes);
 
-module.exports = app;
+module.exports = router;

@@ -36,18 +36,26 @@ class ErrorPage extends React.Component {
 
     render() {
         const { icon, message, description } = this.getErrorByCode(this.props.errorCode);
+        let redirectionQueryParam = `?redirect=${window.location.href}`;
+
         return (
-            <div className="row center create-notebox-heading">
-                <i className="material-icons white-text error-page-logo">{icon}</i>
-                <h4 className="white-text">{message}</h4>
-                <p className="white-text">{description}</p>
+            <div>
+                <div className="row center create-notebox-heading">
+                    <i className="material-icons white-text error-page-logo">{icon}</i>
+                    <h4 className="white-text">{message}</h4>
+                    <p className="white-text">{description}</p>
+                </div>
+                <div className="row center">
+                    <a href={`/auth/login/google${redirectionQueryParam}`} className="btn waves-effect waves-purple white purple-text google-login-btn">Login with Google</a>
+                </div>
             </div>
         )
     }
 }
 
 ErrorPage.propTypes = {
-    errorCode: PropTypes.number
+    errorCode: PropTypes.number,
+    redirectUrl: PropTypes.string
 }
 
 ErrorPage.defaultProps = {

@@ -1,6 +1,11 @@
 const appRootPath = require('app-root-path');
 const http = require('http');
-const app = require('./routes');
+const express = require('express');
+const serverRoutes = require('./routes');
+
+const app = express();
+
+app.use(serverRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(appRootPath.resolve('dist/index.html'));

@@ -20,7 +20,11 @@ export function fetchNoteBoxes() {
                     });
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                const errorStatusCode = getProperty(err, 'response.status');
+                if (errorStatusCode) {
+                    return dispatch({ type: noteBoxAction.FETCH_NOTE_BOXES_FAILED, errorCode: errorStatusCode });
+                }
                 dispatch({
                     type: noteBoxAction.FETCH_NOTE_BOXES_FAILED,
                     errorCode: 500
@@ -48,7 +52,11 @@ export function saveNoteBox(noteBox) {
                         });
                     }
                 })
-                .catch(() => {
+                .catch((err) => {
+                    const errorStatusCode = getProperty(err, 'response.status');
+                    if (errorStatusCode) {
+                        return dispatch({ type: noteBoxAction.CREATE_NOTE_BOX_FAILED, errorCode: errorStatusCode });
+                    }
                     dispatch({
                         type: noteBoxAction.CREATE_NOTE_BOX_FAILED,
                         errorCode: 500
@@ -70,7 +78,11 @@ export function saveNoteBox(noteBox) {
                         });
                     }
                 })
-                .catch(() => {
+                .catch((err) => {
+                    const errorStatusCode = getProperty(err, 'response.status');
+                    if (errorStatusCode) {
+                        return dispatch({ type: noteBoxAction.UPDATE_NOTE_BOX_FAILED, errorCode: errorStatusCode });
+                    }
                     dispatch({
                         type: noteBoxAction.UPDATE_NOTE_BOX_FAILED,
                         errorCode: 500

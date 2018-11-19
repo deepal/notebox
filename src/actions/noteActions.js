@@ -30,7 +30,11 @@ export function getNotes(noteBoxId) {
                     });
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                const errorStatusCode = getProperty(err, 'response.status');
+                if (errorStatusCode) {
+                    return dispatch({ type: noteAction.FETCH_NOTES_FAILED, errorCode: errorStatusCode });
+                }
                 dispatch({ type: noteAction.FETCH_NOTES_FAILED, errorCode: 500 });
             })
             .finally(() => {
@@ -54,7 +58,11 @@ export function createNote(note) {
                     });
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                const errorStatusCode = getProperty(err, 'response.status');
+                if (errorStatusCode) {
+                    return dispatch({ type: noteAction.CREATE_NOTE_FAILED, errorCode: errorStatusCode });
+                }
                 dispatch({ type: noteAction.CREATE_NOTE_FAILED, errorCode: 500 });
             })
             .finally(() => {
@@ -81,7 +89,11 @@ export function updateNote(note) {
                     });
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                const errorStatusCode = getProperty(err, 'response.status');
+                if (errorStatusCode) {
+                    return dispatch({ type: noteAction.UPDATE_NOTE_FAILED, errorCode: errorStatusCode });
+                }
                 dispatch({ type: noteAction.UPDATE_NOTE_FAILED, errorCode: 500 });
             })
             .finally(() => {
@@ -106,7 +118,11 @@ export function deleteNote(noteId) {
                     });
                 }
             })
-            .catch(() => {
+            .catch((err) => {
+                const errorStatusCode = getProperty(err, 'response.status');
+                if (errorStatusCode) {
+                    return dispatch({ type: noteAction.DELETE_NOTE_FAILED, errorCode: errorStatusCode });
+                }
                 dispatch({type: noteAction.DELETE_NOTE_FAILED, errorCode: 500});
             })
             .finally(() => {
