@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {createNote} from '../../actions/noteActions';
+import * as actions from '../../actions/noteActions';
 import NoteEditor from './NoteEditor';
 import * as noteActionStatus from '../../constants/actionTypes/notes';
 import Materialize from 'materialize-css/dist/js/materialize.min';
@@ -11,6 +11,11 @@ class CreateNote extends React.Component {
     constructor(props) {
         super(props);
         this.createNote = this.createNote.bind(this);
+        this.updateDraft = this.updateDraft.bind(this);
+    }
+
+    updateDraft(updatedNote){
+        this.props.actions.updateDraftNote(updatedNote);
     }
 
     createNote(note){
@@ -45,9 +50,10 @@ class CreateNote extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col m8 offset-m2 s12">
-                            <NoteEditor 
-                                note={this.props.note} 
+                            <NoteEditor
+                                note={this.props.note}
                                 onSaveNote={this.createNote}
+                                onUpdateDraft={this.updateDraft}
                                 isSaving={isSaving}
                             ></NoteEditor>
                         </div>
@@ -79,8 +85,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        actions: bindActionCreators({createNote}, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateNote);
+

@@ -2,6 +2,17 @@ import * as noteAction from '../constants/actionTypes/notes';
 import axios from 'axios';
 import getProperty from 'lodash.get';
 
+/**
+ * Action to update the current draft note in the create note view
+ * @param {*} draftNote
+ */
+export function updateDraftNote(noteDiff) {
+    return {
+        type: noteAction.UPDATE_DRAFT_NOTE,
+        noteDiff
+    };
+}
+
 export function getNotes(noteBoxId) {
     return (dispatch) => {
         let url;
@@ -24,8 +35,8 @@ export function getNotes(noteBoxId) {
                         notes: getProperty(data, 'data.notes')
                     });
                 } else {
-                    dispatch({ 
-                        type: noteAction.FETCH_NOTES_FAILED, 
+                    dispatch({
+                        type: noteAction.FETCH_NOTES_FAILED,
                         errorCode: status
                     });
                 }
@@ -52,8 +63,8 @@ export function createNote(note) {
                 if (status === 201 && getProperty(data, 'success')) {
                     dispatch({ type: noteAction.CREATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
                 } else {
-                    dispatch({ 
-                        type: noteAction.CREATE_NOTE_FAILED, 
+                    dispatch({
+                        type: noteAction.CREATE_NOTE_FAILED,
                         errorCode: status
                     });
                 }
@@ -83,8 +94,8 @@ export function updateNote(note) {
                 if (status === 200 && getProperty(data, 'success')) {
                     dispatch({ type: noteAction.UPDATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
                 } else {
-                    dispatch({ 
-                        type: noteAction.UPDATE_NOTE_FAILED, 
+                    dispatch({
+                        type: noteAction.UPDATE_NOTE_FAILED,
                         errorCode: status
                     });
                 }
@@ -113,7 +124,7 @@ export function deleteNote(noteId) {
                     dispatch({type: noteAction.DELETE_NOTE_SUCCESSFUL, noteId: getProperty(data, 'data.note.id')});
                 } else {
                     dispatch({
-                        type: noteAction.DELETE_NOTE_FAILED, 
+                        type: noteAction.DELETE_NOTE_FAILED,
                         errorCode: status
                     });
                 }

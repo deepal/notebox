@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Editor from 'tui-editor';
 import Materialize from 'materialize-css/dist/js/materialize.min';
 import Spinner from '../Common/Spinner';
+import getProperty from 'lodash.get';
 
 import 'codemirror/lib/codemirror.css';
 import 'tui-editor/dist/tui-editor.css';
@@ -12,14 +13,14 @@ import './note-editor.css';
 class NoteEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: '',
-            tags: '',
-            noteContent: ''
-        };
 
         this.tagsEl = null;
         this.editor = null;
+
+        this.updateMarkdownEditor = this.updateMarkdownEditor.bind(this);
+        this.updateTagsInput = this.updateTagsInput.bind(this);
+        this.initializeTagInput = this.initializeTagInput.bind(this);
+        this.initializeEditor = this.initializeEditor.bind(this);
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onCreateNote = this.onCreateNote.bind(this);
     }
@@ -38,7 +39,7 @@ class NoteEditor extends React.Component {
         });
 
         this.editor.on('change', () => {
-            this.setState({ noteContent: this.editor.getValue() })
+            this.props.onUpdateDraft({ noteContent: this.editor.getValue() })
         });
     }
 
@@ -59,28 +60,39 @@ class NoteEditor extends React.Component {
         const tagInput = Array.from(this.tagsEl.el.childNodes).find(el => el.localName === 'input');
         tagInput.addEventListener('keydown', (event) => {
             if (event.keyCode === 13) {
-                this.setState({ tags: (this.tagsEl.chipsData || []).map(chip => chip.tag) })
+                this.props.onUpdateDraft({ tags: (this.tagsEl.chipsData || []).map(chip => chip.tag) })
             }
         });
     }
 
     onTitleChange(event) {
-        this.setState({ title: event.target.value });
+        this.props.onUpdateDraft({ title: event.target.value });
     }
 
     onCreateNote(event) {
-        this.props.onSaveNote(this.state);
+        this.props.onSaveNote(this.props.note);
         event.preventDefault();
     }
 
+    updateMarkdownEditor(){
+        this.editor && this.editor.setValue(this.props.note.noteContent);
+    }
+
+    updateTagsInput(){
+        // TODO: Complete this function to so that tags input will be cleared once the form is submitted
+    }
+
     render() {
+        this.updateMarkdownEditor();
+        this.updateTagsInput();
+
         return (
             <div className="col s12 m12">
                 <div className="card z-depth-5">
                     <div className="card-content">
                         <div className="row no-margin-bottom">
                             <div className="input-field col m12 s12">
-                                <input value={this.state.title} autoFocus type="text" id="icon_prefix2" className="materialize-textarea" onChange={this.onTitleChange} />
+                                <input value={this.props.note.title} autoFocus type="text" id="icon_prefix2" className="materialize-textarea" onChange={this.onTitleChange} />
                                 <label htmlFor="icon_prefix2">Title</label>
                             </div>
                         </div>
@@ -115,13 +127,15 @@ class NoteEditor extends React.Component {
 
 NoteEditor.propTypes = {
     note: PropTypes.object,
-    isSaving: PropTypes.bool,
-    onSaveNote: PropTypes.func
+    onSaveNote: PropTypes.func,
+    onUpdateDraft: PropTypes.func,
+    actions: PropTypes.object,
+    isSaving: PropTypes.bool
 }
 
 NoteEditor.defaultProps = {
-    isSaving: false,
-    onSaveNote() { }
+    onSaveNote() {},
+    onUpdateDraft() {}
 }
 
 export default NoteEditor;

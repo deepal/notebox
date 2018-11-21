@@ -4,6 +4,8 @@ import initialState from './initialState';
 // TODO: Incomplete
 export default function createNoteViewReducer(state = initialState.createNoteView, action) {
     switch(action.type) {
+        case noteAction.UPDATE_DRAFT_NOTE:
+            return Object.assign({}, state, { note: Object.assign({}, state.note, action.noteDiff) });
         case noteAction.CREATE_NOTE_REQUEST:
         case noteAction.CREATE_NOTE_FAILED:
             return Object.assign({}, state, {status: action.type});
