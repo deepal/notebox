@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Editor from 'tui-editor';
 import Materialize from 'materialize-css/dist/js/materialize.min';
 import Spinner from '../Common/Spinner';
-import getProperty from 'lodash.get';
 
 import 'codemirror/lib/codemirror.css';
 import 'tui-editor/dist/tui-editor.css';
