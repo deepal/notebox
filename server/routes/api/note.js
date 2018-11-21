@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    res.status(200).json(require('../../mock-data/create-note.json'));
+    res.status(201).json(require('../../mock-data/create-note.json'));
 });
 
 router.get('/:noteId', (req, res) => {
