@@ -3,8 +3,8 @@ import axios from 'axios';
 import getProperty from 'lodash.get';
 
 /**
- * Action to update the current draft note in the create note view
- * @param {*} draftNote
+ * Redux action to update the current draft note in the create note view
+ * @param {object} draftNote
  */
 export function updateDraftNote(noteDiff) {
     return {
@@ -13,6 +13,10 @@ export function updateDraftNote(noteDiff) {
     };
 }
 
+/**
+ * Redux action to fetch all notes or notes belong to a given notebox
+ * @param {number|undefined} noteBoxId
+ */
 export function getNotes(noteBoxId) {
     return (dispatch) => {
         let url;
@@ -28,7 +32,7 @@ export function getNotes(noteBoxId) {
         axios.get(url)
             .then((response) => {
                 const { status, data } = response;
-                if (status === 200 && getProperty(data, 'success')) {
+                if (status === 200 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                     dispatch({
                         type: noteAction.FETCH_NOTES_SUCCESSFUL,
                         noteBox: getProperty(data, 'data.noteBox'),
@@ -46,7 +50,7 @@ export function getNotes(noteBoxId) {
                 if (errorStatusCode) {
                     return dispatch({ type: noteAction.FETCH_NOTES_FAILED, errorCode: errorStatusCode });
                 }
-                dispatch({ type: noteAction.FETCH_NOTES_FAILED, errorCode: 500 });
+                dispatch({ type: noteAction.FETCH_NOTES_FAILED, errorCode: 500 });      // TODO: Use constants to define http status codes. No magic numbers.
             })
             .finally(() => {
                 dispatch({ type: noteAction.FETCH_NOTES_END });
@@ -54,13 +58,16 @@ export function getNotes(noteBoxId) {
     }
 }
 
+/**
+ * Redux action to create a new note
+ * @param {object} note
+ */
 export function createNote(note) {
-    // TODO: should validate note content here
     return (dispatch) => {
         dispatch({ type: noteAction.CREATE_NOTE_REQUEST });
         axios.post(`/api/note`, note)
             .then(({ status, data }) => {
-                if (status === 201 && getProperty(data, 'success')) {
+                if (status === 201 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                     dispatch({ type: noteAction.CREATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
                 } else {
                     dispatch({
@@ -74,7 +81,7 @@ export function createNote(note) {
                 if (errorStatusCode) {
                     return dispatch({ type: noteAction.CREATE_NOTE_FAILED, errorCode: errorStatusCode });
                 }
-                dispatch({ type: noteAction.CREATE_NOTE_FAILED, errorCode: 500 });
+                dispatch({ type: noteAction.CREATE_NOTE_FAILED, errorCode: 500 });      // TODO: Use constants to define http status codes. No magic numbers.
             })
             .finally(() => {
                 dispatch({ type: noteAction.CREATE_NOTE_END })
@@ -82,6 +89,10 @@ export function createNote(note) {
     }
 }
 
+/**
+ * Redux action to update an existing note
+ * @param {object} note
+ */
 export function updateNote(note) {
     return (dispatch) => {
         if (!note.id) {
@@ -91,7 +102,7 @@ export function updateNote(note) {
         dispatch({ type: noteAction.UPDATE_NOTE_REQUEST });
         axios.put(`/api/note/${note.id}`, note)
             .then(({ status, data }) => {
-                if (status === 200 && getProperty(data, 'success')) {
+                if (status === 200 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                     dispatch({ type: noteAction.UPDATE_NOTE_SUCCESSFUL, note: getProperty(data, 'data.note') });
                 } else {
                     dispatch({
@@ -105,7 +116,7 @@ export function updateNote(note) {
                 if (errorStatusCode) {
                     return dispatch({ type: noteAction.UPDATE_NOTE_FAILED, errorCode: errorStatusCode });
                 }
-                dispatch({ type: noteAction.UPDATE_NOTE_FAILED, errorCode: 500 });
+                dispatch({ type: noteAction.UPDATE_NOTE_FAILED, errorCode: 500 });      // TODO: Use constants to define http status codes. No magic numbers.
             })
             .finally(() => {
                 dispatch({ type: noteAction.UPDATE_NOTE_END })
@@ -113,6 +124,10 @@ export function updateNote(note) {
     }
 }
 
+/**
+ * Redux action to delete a given note
+ * @param {number} noteId
+ */
 export function deleteNote(noteId) {
     return (dispatch) => {
         if (!noteId) {
@@ -120,7 +135,7 @@ export function deleteNote(noteId) {
         }
         axios.get(`/api/note/${noteId}`)
             .then(({ status, data }) => {
-                if (status === 200 && getProperty(data, 'success')) {
+                if (status === 200 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                     dispatch({type: noteAction.DELETE_NOTE_SUCCESSFUL, noteId: getProperty(data, 'data.note.id')});
                 } else {
                     dispatch({
@@ -134,7 +149,7 @@ export function deleteNote(noteId) {
                 if (errorStatusCode) {
                     return dispatch({ type: noteAction.DELETE_NOTE_FAILED, errorCode: errorStatusCode });
                 }
-                dispatch({type: noteAction.DELETE_NOTE_FAILED, errorCode: 500});
+                dispatch({type: noteAction.DELETE_NOTE_FAILED, errorCode: 500});        // TODO: Use constants to define http status codes. No magic numbers.
             })
             .finally(() => {
                 dispatch({type: noteAction.DELETE_NOTE_END});

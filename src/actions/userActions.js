@@ -2,10 +2,16 @@ import axios from 'axios';
 import getProperty from 'lodash.get';
 import * as userAction from '../constants/actionTypes/users';
 
+/**
+ * Redux action to trigger user logout prompt
+ */
 export function requestLogout() {
     return { type: userAction.LOGOUT_REQUESTED };
 }
 
+/**
+ * Redux action to trigger logout process
+ */
 export function logout() {
     return (dispatch) => {
         axios.get('/auth/logout')
@@ -25,6 +31,9 @@ export function logout() {
     };
 }
 
+/**
+ * Redux action to fetch logged in user's details
+ */
 export function getUser() {
     return (dispatch) => {
         dispatch({ type: userAction.FETCH_USER_REQUESTED });
@@ -44,6 +53,10 @@ export function getUser() {
     };
 }
 
+/**
+ * Redux action to update user profile
+ * @param {object} user
+ */
 export function updateProfile(user) {
     return (dispatch) => {
         dispatch({ type: userAction.UPDATE_USER_REQUESTED });

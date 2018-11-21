@@ -2,13 +2,16 @@ import * as noteBoxAction from '../constants/actionTypes/noteBoxes';
 import getProperty from 'lodash.get';
 import axios from 'axios';
 
+/**
+ * Redux action to fetch all noteboxes
+ */
 export function fetchNoteBoxes() {
     return (dispatch) => {
         dispatch({ type: noteBoxAction.FETCH_NOTE_BOXES_REQUEST });
         axios.get('/api/notebox')
             .then((response) => {
                 const { status, data } = response;
-                if ( status === 200 && getProperty(data, 'success')) {
+                if (status === 200 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                     dispatch({
                         type: noteBoxAction.FETCH_NOTE_BOXES_SUCCESSFUL,
                         noteBoxes: getProperty(data, 'data.noteBoxes')
@@ -27,12 +30,16 @@ export function fetchNoteBoxes() {
                 }
                 dispatch({
                     type: noteBoxAction.FETCH_NOTE_BOXES_FAILED,
-                    errorCode: 500
+                    errorCode: 500      // TODO: Use constants to define http status codes. No magic numbers.
                 });
             })
     }
 }
 
+/**
+ * Redux action to create a new notebox/update an existing notebox
+ * @param {object} noteBox
+ */
 export function saveNoteBox(noteBox) {
     //  TODO: remove redundant code
     return (dispatch) => {
@@ -40,7 +47,7 @@ export function saveNoteBox(noteBox) {
             dispatch({ type: noteBoxAction.CREATE_NOTE_BOX_REQUEST });
             axios.post('/api/notebox', noteBox)
                 .then(({ status, data }) => {
-                    if (status === 201 && getProperty(data, 'success')) {
+                    if (status === 201 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                         dispatch({
                             type: noteBoxAction.CREATE_NOTE_BOX_SUCCESSFUL,
                             id: getProperty(data, 'data.noteBox.id')
@@ -59,14 +66,14 @@ export function saveNoteBox(noteBox) {
                     }
                     dispatch({
                         type: noteBoxAction.CREATE_NOTE_BOX_FAILED,
-                        errorCode: 500
+                        errorCode: 500      // TODO: Use constants to define http status codes. No magic numbers.
                     });
                 })
         } else {
             dispatch({ type: noteBoxAction.UPDATE_NOTE_BOX_REQUEST });
             axios.put(`/api/notebox/${noteBox.id}`, noteBox)
                 .then(({ status, data }) => {
-                    if (status === 200 && getProperty(data, 'success')) {
+                    if (status === 200 && getProperty(data, 'success')) {       // TODO: Use constants to define http status codes. No magic numbers.
                         dispatch({
                             type: noteBoxAction.UPDATE_NOTE_BOX_SUCCESSFUL,
                             id: getProperty(data, 'data.noteBox.id')
@@ -85,7 +92,7 @@ export function saveNoteBox(noteBox) {
                     }
                     dispatch({
                         type: noteBoxAction.UPDATE_NOTE_BOX_FAILED,
-                        errorCode: 500
+                        errorCode: 500      // TODO: Use constants to define http status codes. No magic numbers.
                     });
                 })
         }
@@ -93,13 +100,39 @@ export function saveNoteBox(noteBox) {
     }
 }
 
-
-// export function calculateFuelSavings(settings, fieldName, value) {
-//   return {
-//     type: types.CALCULATE_FUEL_SAVINGS,
-//     dateModified: getFormattedDateTime(),
-//     settings,
-//     fieldName,
-//     value
-//   };
-// }
+/**
+ * Redux action to delete a given notebox
+ * @param {number} noteBoxId
+ */
+export function deleteNoteBox(noteBoxId) {
+    /**
+     * We assume that 'noteBoxId' parameter is always provided. If this action is called without the
+     * 'noteBoxId' parameter, it should be a coding bug
+     */
+    return (dispatch) => {
+        dispatch({ type: noteBoxAction.DELETE_NOTE_BOX_REQUEST });
+        axios.delete(`/api/notebox/${noteBoxId}`)
+            .then(({ status, data }) => {
+                if (status === 200 && getProperty(data, 'success')) {   // TODO: Use constants to define http status codes. No magic numbers.
+                    dispatch({
+                        type: noteBoxAction.DELETE_NOTE_BOX_SUCCESSFUL
+                    });
+                } else {
+                    dispatch({
+                        type: noteBoxAction.DELETE_NOTE_BOX_FAILED,
+                        errorCode: status
+                    });
+                }
+            })
+            .catch((err) => {
+                const errorStatusCode = getProperty(err, 'response.status');
+                if (errorStatusCode) {
+                    return dispatch({ type: noteBoxAction.DELETE_NOTE_BOX_FAILED, errorCode: errorStatusCode });
+                }
+                dispatch({
+                    type: noteBoxAction.DELETE_NOTE_BOX_FAILED,
+                    errorCode: 500      // TODO: Use constants to define http status codes. No magic numbers.
+                });
+            })
+    }
+}
