@@ -1,6 +1,11 @@
 import * as noteBoxesAction from '../constants/actionTypes/noteBoxes';
 import initialState from './initialState';
 
+/**
+ * Reducer function for 'note boxes' view
+ * @param {object} state
+ * @param {object} action
+ */
 export default function noteBoxesReducer(state = initialState.noteBoxesView, action) {
   switch (action.type) {
     case noteBoxesAction.FETCH_NOTE_BOXES_REQUEST:

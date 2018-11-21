@@ -2,10 +2,10 @@ import initialState from './initialState';
 import * as noteActions from '../constants/actionTypes/notes';
 
 /**
- * Reduce Notes
+ * Reducer function for 'current notebox' view
  * TODO: Currently, can only update/delete notes in the open notebox only. revise.
- * @param {*} state 
- * @param {*} action 
+ * @param {*} state
+ * @param {*} action
  */
 export default function openNoteBoxReducer(state = initialState.noteBoxView, action) {
     switch (action.type) {

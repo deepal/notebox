@@ -1,8 +1,13 @@
 import * as noteAction from '../constants/actionTypes/notes';
 import initialState from './initialState';
 
-// TODO: Incomplete
+/**
+ * Reducer function for 'create note' view
+ * @param {object} state
+ * @param {object} action
+ */
 export default function createNoteViewReducer(state = initialState.createNoteView, action) {
+    // TODO: Incomplete
     switch(action.type) {
         case noteAction.UPDATE_DRAFT_NOTE:
             return Object.assign({}, state, { note: Object.assign({}, state.note, action.noteDiff) });
