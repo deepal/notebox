@@ -22,7 +22,7 @@ router.use(session({
         httpOnly: true
     }
 }));
-router.use(cookieParser);
+router.use(cookieParser());
 router.use(passport.initialize());
 router.use(passport.session());
 passport.use(new GoogleStrategy({
