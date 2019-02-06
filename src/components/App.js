@@ -26,7 +26,6 @@ class App extends React.Component {
         (
           <main className="container-fluid" key={2}>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-            <link href="https://fonts.googleapis.com/css?family=Mali|Source+Code+Pro" rel="stylesheet"></link>
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/create-note" component={CreateNote} />

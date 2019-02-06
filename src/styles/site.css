@@ -1,18 +1,18 @@
 * {
-    font-family: 'Mali', cursive;
+    font-family: 'Ubuntu', Helvetica, sans-serif;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-font-family: 'Mali', cursive !important;
+font-family: 'Ubuntu', Helvetica, sans-serif !important;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-font-family: 'Mali', cursive !important;
+font-family: 'Ubuntu', Helvetica, sans-serif !important;
 }
 :-ms-input-placeholder { /* IE 10+ */
-font-family: 'Mali', cursive !important;
+font-family: 'Ubuntu', Helvetica, sans-serif !important;
 }
 :-moz-placeholder { /* Firefox 18- */
-font-family: 'Mali', cursive !important;
+font-family: 'Ubuntu', Helvetica, sans-serif !important;
 }
 
 .chips input {
@@ -40,7 +40,7 @@ font-family: 'Mali', cursive !important;
     box-shadow: none;
 }
 
-/* need mediaquery expression to make margin 0 when the screen is smaller. otherwise for smaller screens, 
+/* need mediaquery expression to make margin 0 when the screen is smaller. otherwise for smaller screens,
 the logo will not display in the center because of the margin-left setting
 */
 .brand-logo {
@@ -56,4 +56,3 @@ body {
 main {
     flex: 1 0 auto !important;
 }
-      
